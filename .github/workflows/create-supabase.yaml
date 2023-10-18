@@ -2,7 +2,7 @@ name: Create Table
 on:
   push:
     branches:
-      - test_branch
+      - test_table_script
   workflow_dispatch:
 
 jobs:
