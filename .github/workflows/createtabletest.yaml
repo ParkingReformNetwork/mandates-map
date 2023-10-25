@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
       PROJECT_ID: oecrkeanazdxowjcpjqr
 
     steps:
@@ -29,7 +30,7 @@ jobs:
         run: supabase init 
 
       - name: Configure Supabase
-        run: supabase link --project-ref $PROJECT_ID
+        run: supabase link --project-ref $PROJECT_ID 
         
       - name: Db action test
         run: supabase db pull
