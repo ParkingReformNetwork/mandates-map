@@ -40,9 +40,9 @@ jobs:
       #- run: supabase link --project-ref $PROJECT_ID
       #- run: supabase db push
 
-     - name: Create table
-       run: |
-        supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
+      - name: Create table
+        run: |
+          supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
 
       - name: Check
         run: echo "Table created!"
