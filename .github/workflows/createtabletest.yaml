@@ -20,8 +20,8 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Install Supabase CLI
-        run:  npm install -g supabase
-        #run: npm i supabase --save-dev
+        #run:  npm install -g supabase
+        run: npm i supabase --save-dev
 
       - name: Create table
         run: |
