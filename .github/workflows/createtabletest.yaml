@@ -1,0 +1,11 @@
+name: Echo Test
+on:
+  push:
+    branches:
+      - test_table_script
+
+jobs:
+  Create-table:
+    runs-on: ubuntu-latest
+    steps: 
+      - run: echo "test run! on branch ${{ github.ref }}"
