@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install Supabase CLI
-        run:  npm install -g @supabase/cli
+        run:  npm install -g supabase
 
       - name: Create table
         run: |
