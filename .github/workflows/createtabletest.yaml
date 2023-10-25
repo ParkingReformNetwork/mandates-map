@@ -21,7 +21,7 @@ jobs:
 
       - name: Debug
         run: |
-          ls -l C:\Users\bianc\Desktop\reform-map\node_modules\supabase
+          ls -l C:/Users/bianc/Desktop/
           ls -l /node_modules/supabase
     
       - name: Install Supabase CLI
