@@ -12,14 +12,9 @@ jobs:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       PROJECT_ID: oecrkeanazdxowjcpjqr
 
-    steps: 
-        run: echo "steps started"
+    steps:   
       - name: Checkout code
-        uses: actions/checkout@v3
-
-     # - name: Install Supabase CLI
-        #run:  npm install -g supabase
-        #run: npm i supabase --save-dev
+        uses: actions/checkout@v2
 
       - name: Create table
         run: |
