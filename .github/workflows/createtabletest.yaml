@@ -31,14 +31,10 @@ jobs:
 
       - name: Configure Supabase
         run: supabase link --project-ref $PROJECT_ID 
-        
-      - name: Db action test
-        run: supabase db pull
 
-
-    #  - name: Create table
-      #  run: |
-      #    supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
+      - name: Create table
+        run: |
+          supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
 
       - name: Check
         run: echo "Table created!"
