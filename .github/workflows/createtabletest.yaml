@@ -16,6 +16,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+     - name: Install Supabase CLI
+        #run:  npm install -g supabase
+        run: npm i supabase --save-dev
+
       - name: Create table
         run: |
           supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
