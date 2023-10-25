@@ -21,7 +21,8 @@ jobs:
 
       - name: Debug
         run: |
-          ls -l /node-modules/supabase
+          ls -l
+    #      ls -l /node-modules/supabase
     
       - name: Install Supabase CLI
         run: npm i supabase --save-dev
