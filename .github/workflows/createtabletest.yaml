@@ -20,7 +20,8 @@ jobs:
 
       - name: Debug
         run: |
-          ls -l /node_modules/supabase
+          ls -l /node_modules/supabase 
+#path not found
 
       - name: Install Supabase CLI
         run: npm install -g supabase-cli
@@ -36,12 +37,12 @@ jobs:
       - name: Configure Supabase
         run: supabase init --project-id $PROJECT_ID --key $SUPABASE_ACCESS_TOKEN
       
-      - run: supabase link --project-ref $PROJECT_ID
-      - run: supabase db push
+      #- run: supabase link --project-ref $PROJECT_ID
+      #- run: supabase db push
 
-     # - name: Create table
-      #  run: |
-       #   supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
+     - name: Create table
+       run: |
+        supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
 
       - name: Check
         run: echo "Table created!"
