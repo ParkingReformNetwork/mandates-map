@@ -25,9 +25,12 @@ jobs:
 
           # - run: supabase functions deploy --project-ref $PROJECT_ID
 
+      - name: Init
+        run: supabase init 
+
       - name: Configure Supabase
         run: supabase link --project-ref $PROJECT_ID
-        #run: supabase init --project-id $PROJECT_ID --key $SUPABASE_ACCESS_TOKEN
+        
       - name: Db action test
         run: supabase db pull
 
