@@ -21,3 +21,6 @@ jobs:
       - name: Create table
         run: |
           supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
+
+      - name: Check
+        run: echo "table created!"
