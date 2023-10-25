@@ -29,6 +29,9 @@ jobs:
         uses: supabase/setup-cli@v1
         with:
           version: latest
+      
+      - name: Add Supabase CLI to PATH
+        run: export PATH=$PATH:/node_modules/supabase
 
       - name: Configure Supabase
         run: supabase init --project-id $PROJECT_ID --key $SUPABASE_ACCESS_TOKEN
