@@ -1,0 +1,47 @@
+name: Create Simple Table
+on:
+  push:
+    branches:
+      - test_table_script
+
+jobs:
+  create-table:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      PROJECT_ID: oecrkeanazdxowjcpjqr
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+
+      - name: Debug
+        run: |
+          ls -l /node_modules/supabase
+
+      - name: Install Supabase CLI
+        run: npm install -g supabase-cli
+
+      - name: Set up Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Configure Supabase
+        run: supabase init --project-id $PROJECT_ID --key $SUPABASE_ACCESS_TOKEN
+      
+      - run: supabase link --project-ref $PROJECT_ID
+      - run: supabase db push
+
+     # - name: Create table
+      #  run: |
+       #   supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
+
+      - name: Check
+        run: echo "Table created!"
+
+      - name: Clean Up
+        run: npm uninstall -g supabase-cli
