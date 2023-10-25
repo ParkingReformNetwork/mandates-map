@@ -20,13 +20,9 @@
 #         uses: supabase/setup-cli@v1
 #         with:
 #           version: latest
-#       - name: Check if table alr exists
-#         run: |
-#           result=$(supabase table list --project-ref $PROJECT_ID | grep "Reform Map")
-#           if [ -n "$result" ]; then
-#             echo "Table exists, dropping it"
-#             supabase table drop "Reform Map" --project-ref $PROJECT_ID
-#           else
-#             echo "Table doesn't exist"
-#           fi
+#      - run: supabase link --project-ref $PROJECT_ID
+#      - run: supabase db push
+
+#      - name: check
+#        run: echo "table created"
 
