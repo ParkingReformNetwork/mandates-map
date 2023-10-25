@@ -21,14 +21,13 @@ jobs:
 
       - name: Debug
         run: |
-          ls -l
-          ls -l /node-modules
+          ls -l /node_modules/supabase
     
       - name: Install Supabase CLI
         run: npm i supabase --save-dev
 
       - name: Add Supabase CLI to PATH
-        run: export PATH=$PATH:/node-modules/supabase
+        run: export PATH=$PATH:/node_modules/supabase
 
       - name: Create table
         run: |
