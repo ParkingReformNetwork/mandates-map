@@ -19,9 +19,15 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
 
+      - name: Debug
+        run: |
+          ls -l /node-modules/supabase
+    
       - name: Install Supabase CLI
-        #run:  npm install -g supabase
         run: npm i supabase --save-dev
+
+      - name: Add Supabase CLI to PATH
+        run: export PATH=$PATH:/node-modules/supabase
 
       - name: Create table
         run: |
