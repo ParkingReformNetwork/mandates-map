@@ -23,10 +23,6 @@ jobs:
         with:
           version: latest
 
-      - name: Debug
-        run: |
-          ls -l /node_modules/supabase 
-
       - name: Configure Supabase
         run: supabase init --project-id $PROJECT_ID --key $SUPABASE_ACCESS_TOKEN
       
