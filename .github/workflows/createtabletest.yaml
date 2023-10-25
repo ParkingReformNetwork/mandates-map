@@ -24,9 +24,11 @@ jobs:
           version: latest
 
       - name: Configure Supabase
-        run: supabase init --project-id $PROJECT_ID --key $SUPABASE_ACCESS_TOKEN
+        run: supabase link --project-ref $PROJECT_ID
+        #run: supabase init --project-id $PROJECT_ID --key $SUPABASE_ACCESS_TOKEN
+
       
-      #- run: supabase link --project-ref $PROJECT_ID
+        
   
 
       - name: Create table
