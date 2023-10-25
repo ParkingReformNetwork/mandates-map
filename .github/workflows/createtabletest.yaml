@@ -23,20 +23,17 @@ jobs:
         with:
           version: latest
 
+          # - run: supabase functions deploy --project-ref $PROJECT_ID
+
       - name: Configure Supabase
         run: supabase link --project-ref $PROJECT_ID
         #run: supabase init --project-id $PROJECT_ID --key $SUPABASE_ACCESS_TOKEN
+      - run: supabase db pull
 
-      
-        
-  
 
-      - name: Create table
-        run: |
-          supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
+    #  - name: Create table
+      #  run: |
+      #    supabase create table table_test --schema public --columns "firstcolumn:text,secondcolumn:bigint"
 
       - name: Check
         run: echo "Table created!"
-
-      - name: Clean Up
-        run: npm uninstall -g supabase-cli
