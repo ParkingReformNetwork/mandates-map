@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-  Create-Table:
+  create-table:
     runs-on: ubuntu-latest
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-     - name: Install Supabase CLI
+      - name: Install Supabase CLI
         #run:  npm install -g supabase
         run: npm i supabase --save-dev
 
