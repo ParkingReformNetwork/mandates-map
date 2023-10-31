@@ -11,10 +11,9 @@ jobs:
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
-      SUPABASE_API_KEY:  ${{ secrets.SUPABASE_API_KEY }}
+      SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
       PROJECT_ID: "oecrkeanazdxowjcpjqr"
       SUPABASE_API_URL: "https://oecrkeanazdxowjcpjqr.supabase.co"
-    
 
     steps:
       - name: Checkout code
@@ -36,10 +35,7 @@ jobs:
 
       - name: Create Supabase Table
         run: |
-
-
-          TABLE_DEFINITION=
-          '[
+          TABLE_DEFINITION='[
             {
               "name": "reform_map_data",
               "columns": [
@@ -52,4 +48,4 @@ jobs:
             }
           ]'
 
-         curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_API_KEY" -d "$TABLE_DEFINITION" "https://oecrkeanazdxowjcpjqr.supabase.co/rest/v1/"
+          curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_API_KEY" -d "$TABLE_DEFINITION" "https://oecrkeanazdxowjcpjqr.supabase.co/rest/v1/tables"
