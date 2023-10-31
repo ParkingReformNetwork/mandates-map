@@ -24,13 +24,12 @@ jobs:
         with:
           version: latest
 
-          # - run: supabase functions deploy --project-ref $PROJECT_ID
-
       - name: Init
         run: supabase init 
 
       - name: Configure Supabase
         run: supabase link --project-ref $PROJECT_ID 
 
-      - name: Check
-        run: echo "Table created!"
+      - name: Supabase Migration
+        run: supabase migrate up
+        # pulls from create table sql file
