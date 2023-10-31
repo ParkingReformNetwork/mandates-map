@@ -58,7 +58,7 @@ jobs:
             }
           ]'
 
-          curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_API_KEY" -d "$TABLE_DEFINITION" "https://oecrkeanazdxowjcpjqr.supabase.co/tables"
+          curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_API_KEY" -d "$TABLE_DEFINITION" "https://oecrkeanazdxowjcpjqr.supabase.co/rest/v1/tables"
 
 # re-add .sql file
       # - name: Connect to PostgreSQL
