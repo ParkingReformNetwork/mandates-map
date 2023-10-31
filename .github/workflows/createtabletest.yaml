@@ -56,7 +56,8 @@ jobs:
             }
           ]'
 
-          supabase api post /rest/v1/tables -d "$TABLE_DEFINITION"
+          curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_ACCESS_TOKEN" -d "$TABLE_DEFINITION" "$SUPABASE_API_URL/tables"
+
 
       # - name: Connect to PostgreSQL
       #   run: |
