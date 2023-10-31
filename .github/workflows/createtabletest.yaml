@@ -38,7 +38,8 @@ jobs:
         run: |
 
 
-          TABLE_DEFINITION='[
+          TABLE_DEFINITION=
+          '[
             {
               "name": "reform_map_data",
               "columns": [
@@ -46,17 +47,9 @@ jobs:
                   "name": "id",
                   "type": "integer",
                   "primary": true
-                },
-                {
-                  "name": "name",
-                  "type": "text"
-                },
-                {
-                  "name": "age",
-                  "type": "integer"
                 }
               ]
             }
-          ]'
+         ]'
 
-          curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_API_KEY" -d "$TABLE_DEFINITION" "https://oecrkeanazdxowjcpjqr.supabase.co/rest/v1/"
+         curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_API_KEY" -d "$TABLE_DEFINITION" "https://oecrkeanazdxowjcpjqr.supabase.co/rest/v1/"
