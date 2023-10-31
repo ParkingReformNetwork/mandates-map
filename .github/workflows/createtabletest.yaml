@@ -33,19 +33,30 @@ jobs:
       - name: Configure Supabase
         run: supabase link --project-ref $PROJECT_ID 
 
-      - name: Create Supabase Table
-        run: |
-          TABLE_DEFINITION='[
-            {
-              "name": "reform_map_data",
-              "columns": [
-                {
-                  "name": "id",
-                  "type": "integer",
-                  "primary": true
-                }
-              ]
-            }
-          ]'
 
-          curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_API_KEY" -d "$TABLE_DEFINITION" "https://oecrkeanazdxowjcpjqr.supabase.co/rest/v1/tables"
+      - name: Add Columns to Supabase Table
+        run: |
+          # Define the SQL statement to add columns to the table
+          SQL_STATEMENT='ALTER TABLE reform_map_data
+            ADD COLUMN new_column_name_1 text,
+            ADD COLUMN new_column_name_2 integer;'
+
+          # Execute the SQL statement using psql (assuming PostgreSQL)
+          echo "$SQL_STATEMENT" | PGPASSWORD=$SUPABASE_API_KEY psql -U $SUPABASE_API_KEY -h $SUPABASE_API_URL -d $PROJECT_ID
+
+      # - name: Create Supabase Table
+      #   run: |
+      #     TABLE_DEFINITION='[
+      #       {
+      #         "name": "reform_map_data",
+      #         "columns": [
+      #           {
+      #             "name": "id",
+      #             "type": "integer",
+      #             "primary": true
+      #           }
+      #         ]
+      #       }
+      #     ]'
+
+      #     curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_API_KEY" -d "$TABLE_DEFINITION" "https://oecrkeanazdxowjcpjqr.supabase.co/rest/v1/tables"
