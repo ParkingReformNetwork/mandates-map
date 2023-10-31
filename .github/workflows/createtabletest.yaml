@@ -11,6 +11,7 @@ jobs:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
       PROJECT_ID: oecrkeanazdxowjcpjqr
+      SUPABASE_API_URL: https://$PROJECT_ID.supabase.co/rest/v1
 
     steps:
       - name: Checkout code
@@ -29,8 +30,43 @@ jobs:
 
       - name: Configure Supabase
         run: supabase link --project-ref $PROJECT_ID 
+      
+       - name: Create Supabase Table
+         run: |
 
-      - name: Supabase Migration
-        run: supabase migration up 
+          TABLE_DEFINITION=
+          '[
+            {
+              "name": "reform_map_data",
+              "columns": [
+                {
+                  "name": "id",
+                  "type": "integer",
+                  "primary": true
+                },
+                {
+                  "name": "name",
+                  "type": "text"
+                },
+                {
+                  "name": "age",
+                  "type": "integer"
+                }
+                # Add more columns as needed
+              ]
+            }
+          ]'
+
+          supabase api post /rest/v1/tables -d "$TABLE_DEFINITION"
+
+      # - name: Connect to PostgreSQL
+      #   run: |
+      #     psql -h 127.0.0.1 -U postgres -d postgres -p 5432 -c "SELECT version();"
+      #   env:
+      #     PGUSER: ${{ secrets.PG_USER }}
+      #     PGPASSWORD: ${{ secrets.PG_PASSWORD }}
+
+      # - name: Supabase Migration
+      #   run: supabase migration up 
       
 
