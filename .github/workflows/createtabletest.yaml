@@ -12,7 +12,7 @@ jobs:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
       PROJECT_ID: "oecrkeanazdxowjcpjqr"
-      SUPABASE_API_URL: "https://$PROJECT_ID.supabase.co/rest/v1"
+      SUPABASE_API_URL: "https://oecrkeanazdxowjcpjqr.supabase.co"
 
     steps:
       - name: Checkout code
@@ -58,7 +58,7 @@ jobs:
             }
           ]'
 
-          curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_ACCESS_TOKEN" -d "$TABLE_DEFINITION" "$SUPABASE_API_URL/tables"
+          curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_ACCESS_TOKEN" -d "$TABLE_DEFINITION" "https://oecrkeanazdxowjcpjqr.supabase.co/tables"
 
 
       # - name: Connect to PostgreSQL
