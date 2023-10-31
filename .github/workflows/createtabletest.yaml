@@ -1,11 +1,11 @@
-name: Create Simple Table
+name: Create Supabase Table
 on:
   push:
     branches:
       - test_table_script
 
 jobs:
-  create-table:
+  create-supabase-table:
     runs-on: ubuntu-latest
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
@@ -31,6 +31,6 @@ jobs:
         run: supabase link --project-ref $PROJECT_ID 
 
       - name: Supabase Migration
-        run: supabase migrate up --debug
-        # unknown command "migrate" for "supabase"
+        run: supabase migration up 
+      
 
