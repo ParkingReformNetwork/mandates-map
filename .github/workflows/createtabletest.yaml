@@ -11,8 +11,8 @@ jobs:
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
-      PROJECT_ID: oecrkeanazdxowjcpjqr
-      SUPABASE_API_URL: https://$PROJECT_ID.supabase.co/rest/v1
+      PROJECT_ID: "oecrkeanazdxowjcpjqr"
+      SUPABASE_API_URL: "https://$PROJECT_ID.supabase.co/rest/v1"
 
     steps:
       - name: Checkout code
@@ -34,6 +34,8 @@ jobs:
 
       - name: Create Supabase Table
         run: |
+
+
           TABLE_DEFINITION='[
             {
               "name": "reform_map_data",
