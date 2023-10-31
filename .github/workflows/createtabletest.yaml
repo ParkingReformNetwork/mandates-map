@@ -50,6 +50,6 @@ jobs:
                 }
               ]
             }
-         ]'
+          ]'
 
          curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_API_KEY" -d "$TABLE_DEFINITION" "https://oecrkeanazdxowjcpjqr.supabase.co/rest/v1/"
