@@ -28,9 +28,12 @@ jobs:
           version: latest
 
       - name: Init
-        run: supabase init 
+        run: supabase init
         
-      - name: Rest
+      - name: Start local
+        run: supabase start 
+       
+      - name: Reset
         run: supabase db reset 
         
       - name: Configure Supabase
