@@ -29,7 +29,10 @@ jobs:
 
       - name: Init
         run: supabase init 
-
+        
+      - name: Rest
+        run: supabase db reset 
+        
       - name: Configure Supabase
         run: supabase link --project-ref $PROJECT_ID 
 
