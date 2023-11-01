@@ -32,6 +32,9 @@ jobs:
       - name: Configure Supabase
         run: supabase link --project-ref $PROJECT_ID 
         
+      - name: Reset 
+        run: supabase db reset 
+        
       - name: Db action test
         run: supabase db pull
 
