@@ -58,6 +58,8 @@ jobs:
 
           # Make an HTTP POST request to Supabase API to add columns
           curl -X POST -H "Content-Type: application/json" -H "apikey: $SUPABASE_API_KEY" -d "$TABLEDEF" "$SUPABASE_API_URL/rest/v1/tables"
+      - name: push
+        run: supabase db push
       # - name: Create Supabase Table
       #   run: |
       #     TABLE_DEFINITION='[
