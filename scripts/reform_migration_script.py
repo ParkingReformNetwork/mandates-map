@@ -5,8 +5,6 @@ import json
 from datetime import datetime
 
 
-
-
 def upload_to_supabase(data, APIURL):
    APIKEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9lY3JrZWFuYXpkeG93amNwanFyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4NDE5NTkwMiwiZXhwIjoxOTk5NzcxOTAyfQ.vbfQO5YBPkpoQHJzGJ0jfLOVN2RvEzh9BIYLnZ3to7A'
    headers = {
@@ -29,7 +27,6 @@ def fetchnprocess_csv_city(url):
        csv_content = resp.content.decode('utf-8')
        rows = csv_content.strip().split('\n')
        csv_reader = csv.reader(rows)
-
 
        header = next(csv_reader)
        recent_index = header.index('Recent')
@@ -114,7 +111,6 @@ def fetchnprocess_csv_citation(url):
         time3_index = header.index('Report Last updated')
         time4_index = header.index('City Last Updated')
 
-
         processed_rows = []
         for idx, row in enumerate(csv_reader):
 
@@ -124,15 +120,44 @@ def fetchnprocess_csv_citation(url):
                 parsed_timestamp = datetime.strptime(row[index], "%B %d, %Y, %I:%M:%S %p %Z")
                 formatted_timestamp = parsed_timestamp.strftime("%Y-%m-%d %H:%M:%S %Z")
                 row[index] = formatted_timestamp
+
+
+##Link update addition
+
+            def extract_urls(url_string):
+                url_delimiter = 'https://'
+                url_list = url_string.split(url_delimiter)
+                url_list = [f'https://{url}' for url in url_list if url]
+                return url_list
+
+            try:
+                attachments = row[8]
+                citation_id = row[20]
+                supa_urls = []
+          
+                image_urls = extract_urls(attachments)
+
+                for i, url in enumerate(image_urls):
+                    count = i + 1  #to name multiple files withsame citation id. they all should start at citationID_1
+                    supa_url = f'https://oecrkeanazdxowjcpjqr.supabase.co/storage/v1/object/public/Citation_Attachments/Uploads/{citation_id}_{count}.png'
+                    supa_urls.append(supa_url)
+                    
+                row[8] = ' '.join(supa_urls)
             
+            except Exception as e:
+                print(f"Error occurred at row {idx}: {e}")
+            
+##End of link update addition
+                
             processed_rows.append(dict(zip(header, row)))
         return processed_rows
     else:
         print("Failed :/")
+
 def fetchnprocess_csv_contact(url):
    csv_url = url
    resp = requests.get(csv_url)
-#make sure fetched ok
+#Check fetched
    if resp.status_code == 200:
        csv_content = resp.content.decode('utf-8')
        rows = csv_content.strip().split('\n')
